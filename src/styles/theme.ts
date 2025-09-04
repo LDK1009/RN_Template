@@ -8,18 +8,18 @@
 // 색상
 export const colors = {
   primary: {
-    dark: '#1565C0',     // 딥 블루
-    main: '#0A84FF',     // 대표 앱블루 (iOS/인스타/페이스북 공통)
-    light: '#90CAF9',    // 연한 블루
+    dark: '#2a2ac7',     
+    main: '#3f3ff3',     
+    light: '#7a7af5',
   },
   secondary: {
-    dark: '#FF4081',     // 선명한 핑크 (Z세대 감성)
-    main: '#FF80AB',     // 캔디 핑크
-    light: '#F8BBD0',    // 파스텔 핑크
+    dark: '#e91e63',     
+    main: '#ff4081',     
+    light: '#ff79b0',    
   },
   background: {
-    default: '#F9FAFB',  // 모던 연회색 배경
-    paper: '#FFFFFF',    // 카드/컴포넌트 배경
+    default: '#222222',  
+    paper: '#FFFFFF',    
   },
   black: {
     100: '#000000',

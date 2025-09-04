@@ -1,14 +1,8 @@
-/**
- * SCREENS 폴더
- *
- * 앱의 각 화면들을 만드는 곳입니다.
- * 사용자가 보는 페이지들을 정의합니다.
- */
-
-import { CommonButton } from '@/components/common/input/Button'
-import InputText from '@/components/common/input/InputText'
+import { CommonButton } from '@/components/input/Button'
+import InputText from '@/components/input/InputText'
 import { mixinContainer, mixinFlex } from '@/styles/mixins'
 import styled from '@emotion/native'
+import { router } from 'expo-router'
 import React, { useState } from 'react'
 import { SafeAreaView, Text } from 'react-native'
 
@@ -20,11 +14,16 @@ export const HomeScreen = () => {
     alert(`입력한 텍스트: ${text}`)
   }
 
+  const goToNews = () => {
+    router.push('/news')
+  }
+
   return (
     <Container>
       <Text>{text}</Text>
       <InputText placeholder='InputText' onChangeText={setText} value={text} />
       <CommonButton title='Click me' onPress={handlePress} />
+      <CommonButton title='Go to News' onPress={goToNews} />
     </Container>
   )
 }

@@ -7,14 +7,9 @@ export default function RootLayout() {
   return (
     <>
       <StatusBar style='auto' />
-      <Stack>
-        <Stack.Screen
-          name='index'
-          options={{
-            title: 'Speed Battle',
-            headerShown: false,
-          }}
-        />
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name='index' />
+        <Stack.Screen name='news' />
       </Stack>
     </>
   )

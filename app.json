@@ -1,11 +1,11 @@
 {
   "expo": {
-    "name": "speed-battle",
-    "slug": "speed-battle",
+    "name": "RN_Template",
+    "slug": "RN_Template",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "speedbattle",
+    "scheme": "RN_Template",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
