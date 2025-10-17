@@ -1,1 +1,2 @@
-# RN_Template
+# Stock_Exam
+주식고사ㅣ모의고사 기반 주식 학습 플랫폼
