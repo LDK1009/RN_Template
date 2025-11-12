@@ -19,33 +19,39 @@
  */
 
 // dotenv 설정을 로드하여 환경변수를 사용할 수 있게 함
-import 'dotenv/config'
+import 'dotenv/config';
+
+const appInfo = {
+  appName: '주식고사',
+  slug: 'stockexam',
+  easProjectId: '21f2a9db-2523-4ff3-b912-672e555bf3b8',
+};
 
 export default {
   expo: {
     // 📱 앱 기본 정보
-    name: '주식고사',                    // 앱 스토어에 표시될 앱 이름
-    slug: 'stock-exam',                 // Expo 프로젝트 고유 식별자 (URL 친화적)
+    name: appInfo.appName,                    // 앱 스토어에 표시될 앱 이름
+    slug: appInfo.slug,                 // Expo 프로젝트 고유 식별자 (URL 친화적)
     version: '1.0.0',                   // 앱 버전 (앱 스토어 업데이트시 증가)
 
     // 🔄 OTA(Over-The-Air) 업데이트 설정
     // 앱 스토어 업데이트 없이 JavaScript 번들을 실시간으로 업데이트할 수 있음
     updates: {
       // EAS Update 서비스 URL - 프로젝트별 고유 주소
-      url: 'https://u.expo.dev/21f2a9db-2523-4ff3-b912-672e555bf3b8',
+      url: `https://u.expo.dev/${appInfo.easProjectId}`,
     },
 
     // 🎨 UI/UX 설정
     orientation: 'portrait',            // 화면 방향 고정 (세로 모드만)
     icon: './assets/images/icon.png',   // 앱 아이콘 경로
-    scheme: 'stockexam',                // 딥링크용 URL 스키마 (stockexam://...)
+    scheme: appInfo.slug,                // 딥링크용 URL 스키마
     userInterfaceStyle: 'automatic',    // 다크/라이트 모드 자동 감지
     newArchEnabled: true,               // React Native 새로운 아키텍처 활성화
 
     // 🍎 iOS 플랫폼 설정
     ios: {
       supportsTablet: true,                           // iPad 지원 여부
-      bundleIdentifier: 'com.stockexam.app',         // iOS 앱 고유 식별자 (앱 스토어)
+      bundleIdentifier: `com.${appInfo.slug}.app`,         // iOS 앱 고유 식별자 (앱 스토어)
       
       // 🔄 iOS OTA 업데이트 정책
       // appVersion 기반: app.json의 version과 동일한 runtimeVersion 사용
@@ -60,7 +66,7 @@ export default {
         foregroundImage: './assets/images/adaptive-icon.png',  // 전경 이미지
         backgroundColor: '#ffffff',                            // 배경색
       },
-      package: 'com.stockexam.app',                   // Android 패키지명 (Google Play)
+      package: `com.${appInfo.slug}.app`,                   // Android 패키지명 (Google Play)
       edgeToEdgeEnabled: true,                        // 전체 화면 모드 (상태바/네비바까지 사용)
       
       // 🔄 Android OTA 업데이트 버전
@@ -104,7 +110,7 @@ export default {
       // EAS (Expo Application Services) 프로젝트 ID
       // ❌ 주의: Supabase 환경변수는 더 이상 여기서 전달하지 않음
       // ✅ 대신 process.env.EXPO_PUBLIC_* 방식을 사용하여 보안성과 명확성 향상
-      eas: { projectId: '21f2a9db-2523-4ff3-b912-672e555bf3b8' },
+      eas: { projectId: appInfo.easProjectId },
     },
   },
 }
