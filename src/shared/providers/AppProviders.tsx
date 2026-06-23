@@ -1,12 +1,11 @@
 //////////////////////////////////////// 전역 Provider 묶음 ////////////////////////////////////////
 // 앱 루트에서 마운트되는 Provider 트리. 순서가 중요합니다.
-// GestureHandler → SafeArea → Keyboard → Query → Paper
+// GestureHandler → SafeArea → Query → Paper
 
 import MaterialCommunityIcons from '@expo/vector-icons/MaterialCommunityIcons';
 import { QueryClientProvider } from '@tanstack/react-query';
 import { useColorScheme } from 'react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 
@@ -39,13 +38,11 @@ export function AppProviders({ children }: AppProvidersProps) {
   return (
     <GestureHandlerRootView style={{ flex: 1 }}>
       <SafeAreaProvider>
-        <KeyboardProvider>
-          <QueryClientProvider client={queryClient}>
-            <PaperProvider theme={theme} settings={paperSettings}>
-              {children}
-            </PaperProvider>
-          </QueryClientProvider>
-        </KeyboardProvider>
+        <QueryClientProvider client={queryClient}>
+          <PaperProvider theme={theme} settings={paperSettings}>
+            {children}
+          </PaperProvider>
+        </QueryClientProvider>
       </SafeAreaProvider>
     </GestureHandlerRootView>
   );

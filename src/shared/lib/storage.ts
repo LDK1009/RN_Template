@@ -1,24 +1,14 @@
-//////////////////////////////////////// MMKV 저장소 ////////////////////////////////////////
-// RN 에는 localStorage 가 없으므로 zustand persist 의 저장 엔진으로 MMKV 를 사용합니다.
-// MMKV v4 는 nitro 기반 네이티브 모듈이라 Expo Go 에서 동작하지 않습니다 (dev client 필요).
+//////////////////////////////////////// 영구 저장소 ////////////////////////////////////////
+// zustand persist 의 저장 엔진. Expo Go 에서 바로 동작하도록 AsyncStorage 를 사용합니다.
+// (더 빠른 저장이 필요하면 dev build 전환 후 react-native-mmkv 로 교체 — README 참고)
 
-import { createMMKV } from 'react-native-mmkv';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import type { StateStorage } from 'zustand/middleware';
 
-////////// MMKV 인스턴스
-export const storage = createMMKV({ id: 'rn-template-storage' });
-
 //////////////////// zustand persist 어댑터 ////////////////////
-// zustand 의 StateStorage 인터페이스에 MMKV 를 연결합니다.
-export const mmkvStorage: StateStorage = {
-  setItem: (key, value) => {
-    storage.set(key, value);
-  },
-  getItem: (key) => {
-    const value = storage.getString(key);
-    return value ?? null;
-  },
-  removeItem: (key) => {
-    storage.remove(key);
-  },
+// AsyncStorage 는 비동기(Promise) API 이며 zustand 의 StateStorage 인터페이스와 호환됩니다.
+export const persistStorage: StateStorage = {
+  setItem: (key, value) => AsyncStorage.setItem(key, value),
+  getItem: (key) => AsyncStorage.getItem(key),
+  removeItem: (key) => AsyncStorage.removeItem(key),
 };

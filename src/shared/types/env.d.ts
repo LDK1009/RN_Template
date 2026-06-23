@@ -5,7 +5,5 @@ declare namespace NodeJS {
   interface ProcessEnv {
     EXPO_PUBLIC_SUPABASE_URL: string;
     EXPO_PUBLIC_SUPABASE_ANON_KEY: string;
-    ////////// 선택: 설정 시 Sentry 활성화
-    EXPO_PUBLIC_SENTRY_DSN?: string;
   }
 }

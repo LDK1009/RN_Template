@@ -1,11 +1,11 @@
 //////////////////////////////////////// 앱 전역 설정 스토어 ////////////////////////////////////////
-// zustand persist + MMKV 사용 예시. 테마 모드·온보딩 여부 등 비민감 클라이언트 상태를 영구 저장합니다.
+// zustand persist + AsyncStorage 사용 예시. 테마 모드·온보딩 여부 등 비민감 클라이언트 상태를 영구 저장합니다.
 // (민감한 세션 정보는 여기 두지 말 것 — supabase + SecureStore 가 담당)
 
 import { create } from 'zustand';
 import { createJSONStorage, persist } from 'zustand/middleware';
 
-import { mmkvStorage } from '@/shared/lib/storage';
+import { persistStorage } from '@/shared/lib/storage';
 
 export type ThemeMode = 'system' | 'light' | 'dark';
 
@@ -26,7 +26,7 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'app-store',
-      storage: createJSONStorage(() => mmkvStorage),
+      storage: createJSONStorage(() => persistStorage),
     },
   ),
 );

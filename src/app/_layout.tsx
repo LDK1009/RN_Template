@@ -6,12 +6,8 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 
 import { useAuthListener } from '@/shared/hooks/useAuthListener';
-import { initSentry } from '@/shared/lib/sentry';
 import { AppProviders } from '@/shared/providers/AppProviders';
 import { useAuthStore } from '@/shared/store/authStore';
-
-////////// Sentry (DSN 설정 시에만 활성)
-initSentry();
 
 ////////// 세션 복원이 끝날 때까지 스플래시 유지
 SplashScreen.preventAutoHideAsync();
