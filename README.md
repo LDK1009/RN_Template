@@ -30,6 +30,8 @@ React Native + Expo + Supabase 보일러플레이트.
 
 - **Node.js ≥ 20.19.4** (RN 0.85 요구사항). 낮으면 실행이 실패할 수 있습니다.
 - 모바일에서 **Expo Go 앱** 설치 (App Store / Google Play) — 기본 실행에 사용합니다.
+  - 이 프로젝트는 **Expo SDK 56** 이라 **최신 버전 Expo Go** 가 필요합니다.
+    `Project is incompatible with this version of Expo Go` 에러가 나면 스토어에서 Expo Go 를 업데이트하세요.
 
 ---
 
@@ -135,6 +137,30 @@ route 가 깊어져도 `views/` 는 **평탄**하게 유지합니다. route 의 
 
 > SecureStore 는 키당 약 2KB 제한이 있습니다. 세션이 커져 경고가 발생하면
 > `shared/lib/supabase.ts` 의 어댑터를 암호화 대용량 어댑터로 교체하세요.
+
+---
+
+## 📦 데이터 흐름 예시 (service → useQuery → view)
+
+홈 화면에 레이어드 데이터 패칭 패턴 예시가 들어 있습니다.
+
+```
+shared/service/post.service.ts   # Supabase 호출 (순수 async)
+views/home/hooks/usePosts.ts     # TanStack Query 래핑
+views/home/HomeView.tsx          # 로딩/에러/빈 상태 렌더
+```
+
+동작시키려면 Supabase 에 `posts` 테이블을 만드세요:
+
+```sql
+create table posts (
+  id uuid primary key default gen_random_uuid(),
+  title text not null,
+  created_at timestamptz not null default now()
+);
+```
+
+테이블이 없으면 홈 화면에 에러 메시지가 표시됩니다(패턴 데모용이라 의도된 동작).
 
 ---
 
